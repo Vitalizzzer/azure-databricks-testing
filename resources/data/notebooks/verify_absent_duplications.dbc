@@ -1,0 +1,15 @@
+# Databricks notebook source
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS Products;
+# MAGIC CREATE TABLE Products USING CSV OPTIONS (path "/FileStore/tables/products.csv", header "true");
+
+# COMMAND ----------
+
+from pyspark.sql.functions import *
+
+duplicates_number = "0"
+query = spark.sql("""SELECT Count(*) as DuplicateRecords FROM (SELECT Count(*),product,price,discount,expDate FROM products GROUP BY product,price,discount,expDate HAVING Count(*)>1)""").collect()
+actual_duplicate_values_count = str(query[0].DuplicateRecords)
+print(actual_duplicate_values_count)
+assert actual_duplicate_values_count == duplicates_number, "Number of duplicates is incorrect. Expected: {} Actual: {}"\
+        .format(duplicates_number, actual_duplicate_values_count)

@@ -1,0 +1,16 @@
+# Databricks notebook source
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS Products;
+# MAGIC CREATE TABLE Products USING CSV OPTIONS (path "/FileStore/tables/products.csv", header "true");
+
+# COMMAND ----------
+
+from pyspark.sql.functions import *
+
+expected_null_values_count = "0"
+query = spark.sql("""SELECT Count(*) as NullValues FROM products WHERE (product IS null OR price IS null OR discount IS null OR expDate IS null)""").collect()
+actual_null_values_count = str(query[0].NullValues)
+print(actual_null_values_count)
+assert actual_null_values_count == expected_null_values_count, "Number of NULL values is incorrect. Expected: {} Actual: {}"\
+        .format(expected_null_values_count, actual_null_values_count)
+dbutils.notebook.exit(str("Actual null values count: " + actual_null_values_count))
