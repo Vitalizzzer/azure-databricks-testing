@@ -1,0 +1,9 @@
+requests~=2.27.1
+databricks_sql_connector~=2.0.1
+behave~=1.2.6
+behave_html_formatter~=0.9.8
+databricks~=0.2
+pyspark~=3.2.1
+reportportal_client~=5.0.3
+reportportal_behave_client~=1.1.1
+zephyr-results-publisher~=0.1.5
