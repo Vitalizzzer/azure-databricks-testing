@@ -16,6 +16,7 @@ export USER=<username@ah.nl>
 
 For Windows platform:
 ```
+set SERVER_HOSTNAME=<SERVER_HOSTNAME>
 set HTTP_PATH=<HTTP_PATH>
 set DATABRICKS_TOKEN=<ACCESS_TOKEN>
 set USER=<username@ah.nl>

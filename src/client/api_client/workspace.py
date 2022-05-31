@@ -96,8 +96,8 @@ def export_notebook(context, user, notebook, save_path):
     return save_path
 
 
-def import_notebook(context, user, notebook, notebook_to_import_zip_path):
-    encoded = encode_to_base64(notebook_to_import_zip_path)
+def import_notebook(context, user, notebook, notebook_to_import_path):
+    encoded = encode_to_base64(notebook_to_import_path)
     decoded = base64_to_string(encoded)
     url = BASE_URL + "/import"
     headers = {
